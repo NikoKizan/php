@@ -3,8 +3,8 @@
 $driver = 'mysql';
 $host = 'localhost';
 $db_name = 'blog';
-$db_user = 'root';
-$db_password = '123123';
+$db_user = 'niko';
+$db_password = 'Python90!';
 $charset = 'utf8';
 
 // Опции для настройки PDO подключения (не обязательно)
