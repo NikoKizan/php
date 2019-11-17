@@ -48,7 +48,7 @@ $comments = $statement_comments->fetchAll(PDO::FETCH_ASSOC);
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="/marlin/index.php">
+                <a class="navbar-brand" href="/php/marlin/index.php">
                     Project
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,10 +65,10 @@ $comments = $statement_comments->fetchAll(PDO::FETCH_ASSOC);
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                             <li class="nav-item">
-                                <a class="nav-link" href="login.html">Login</a>
+                                <a class="nav-link" href="/php/marlin/login.html">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/marlin/register.php">Register</a>
+                                <a class="nav-link" href="/php/marlin/register.php">Register</a>
                             </li>
                     </ul>
                 </div>
@@ -119,15 +119,16 @@ $comments = $statement_comments->fetchAll(PDO::FETCH_ASSOC);
                                     <input name="name" class="form-control" id="exampleFormControlTextarea1" />
                                   </div>
                                   <?php if(isset($errors['name'])):?>
-                                    <span class="text-danger"><?php echo $errors['name'] ?></span>
+                                    <span class="text-danger"><?php echo $errors['name']; ?></span>
                                   <?php endif ?>
                                   <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Сообщение</label>
                                     <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                   </div>
                                   <?php if(isset($errors['text'])):?>
-                                    <span class="text-danger"><?php echo $errors['text'] ?></span>
+                                    <span class="text-danger"><?php echo $errors['text']; ?></span>
                                   <?php endif ?>
+                                  <?php echo "<br>"?>
                                   <button type="submit" class="btn btn-success">Отправить</button>
                                 </form>
                             </div>

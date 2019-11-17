@@ -23,7 +23,7 @@ include_once 'db.php';
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="/marlin/index.php">
+                <a class="navbar-brand" href="/php/marlin/index.php">
                     Project
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,10 +40,10 @@ include_once 'db.php';
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                             <li class="nav-item">
-                                <a class="nav-link" href="login.html">Login</a>
+                                <a class="nav-link" href="/php/marlin/login.php">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="register.html">Register</a>
+                                <a class="nav-link" href="/php/marlin/register.php">Register</a>
                             </li>
                     </ul>
                 </div>
@@ -66,9 +66,9 @@ include_once 'db.php';
                                         <div class="col-md-6">
                                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" autofocus>
 
-                                                <!--<span class="invalid-feedback" role="alert">
-                                                    <strong>Ошибка валидации</strong>
-                                                </span>-->
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>Заполните данные</strong>
+                                                </span>
                                         </div>
                                     </div>
 

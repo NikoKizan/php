@@ -12,7 +12,12 @@ if (isset($name) && isset($email) && isset($password)) {
 
     $insert = "INSERT INTO `blog`.`register` (`name`, `email`, `password`) VALUES (?,?,?)";
     $statement = $pdo->prepare($insert);
-    $statement->execute([$name,$email,$password]);//var_dump($res);die;
+    try {
+        $statement->execute([$name,$email,$password]);//var_dump($res);die;
+    } catch (PDOException $e) {
+        die('Ошибка: ' . $e->getMessage());
+    }
+    
 
 }
 
@@ -28,8 +33,11 @@ if (!empty($name) && !empty($text)) {
     $statement_comments = $pdo->prepare($insert_comments);
     
     //выполнение запроса
-    $statement_comments->execute([$name, $text]);
-    
+    try {
+        $statement_comments->execute([$name, $text]);
+    } catch (PDOException $e) {
+        die('Ошибка: ' . $e->getMessage());
+    }
     //создаем массив для передачи флэш-сообщений
     $flash['success'] = 'Ваш комментарий успешно добавлен';
 
@@ -50,6 +58,6 @@ if (!empty($name) && !empty($text)) {
     die('Ошибка: ' . $e->getMessage());
 }*/
 
-header('Location: /marlin/index.php');
+header('Location: /php/marlin/index.php');
 
 ?>
