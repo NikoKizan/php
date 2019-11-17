@@ -67,7 +67,7 @@ include_once 'db.php';
                                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" autofocus>
 
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>Заполните данные</strong>
+                                                    <strong>Введите Ваше имя</strong>
                                                 </span>
                                         </div>
                                     </div>
@@ -76,7 +76,11 @@ include_once 'db.php';
                                         <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
 
                                         <div class="col-md-6">
-                                            <input id="email" type="email" class="form-control" name="email" >
+                                            <input id="email" type="email" class="form-control @error('name') is-invalid @enderror" name="email" >
+
+                                            <span class="invalid-feedback" role="alert">
+                                                    <strong>Введите Вашу ел. почту</strong>
+                                            </span>
                                         </div>
                                     </div>
 
@@ -84,7 +88,11 @@ include_once 'db.php';
                                         <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                                         <div class="col-md-6">
-                                            <input id="password" type="password" class="form-control " name="password"  autocomplete="new-password">
+                                            <input id="password" type="password" class="form-control @error('name') is-invalid @enderror" name="password"  autocomplete="new-password">
+
+                                            <span class="invalid-feedback" role="alert">
+                                                    <strong>Введите Ваш пароль</strong>
+                                            </span>
                                         </div>
                                     </div>
 
@@ -92,7 +100,11 @@ include_once 'db.php';
                                         <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
 
                                         <div class="col-md-6">
-                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                            <input id="password-confirm" type="password" class="form-control @error('name') is-invalid @enderror" name="password_confirmation"  autocomplete="new-password">
+
+                                            <span class="invalid-feedback" role="alert">
+                                                    <strong>Подтвердите Ваш пароль</strong>
+                                            </span>
                                         </div>
                                     </div>
 
