@@ -58,16 +58,16 @@ include_once 'db.php';
                             <div class="card-header">Register</div>
 
                             <div class="card-body">
-                                <form method="POST" action="handler.php">
+                                <form method="POST" action="store.php">
 
                                     <div class="form-group row">
-                                        <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                                        <label for="name" class="col-md-4 col-form-label text-md-right">Login</label>
 
                                         <div class="col-md-6">
-                                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" autofocus>
+                                            <input id="login" type="text" class="form-control @error('name') is-invalid @enderror" name="login" autofocus>
 
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>Введите Ваше имя</strong>
+                                                    <strong>Введите Ваш логин</strong>
                                                 </span>
                                         </div>
                                     </div>

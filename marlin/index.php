@@ -15,7 +15,9 @@ unset($_SESSION['flash']);
 
 //Запрос к БД по выборке данных
 $select_comments = "SELECT * 
-           FROM `blog`.`comments` ORDER BY `id` DESC;";
+                    FROM `blog`.`comments` 
+                    ORDER BY `id` 
+                    DESC;";
 
 //Подготовим наш запрос
 $statement_comments = $pdo->prepare($select_comments);

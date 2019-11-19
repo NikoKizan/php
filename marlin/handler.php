@@ -1,32 +1,21 @@
 <?php
 session_start();
+
+//подключение к базе данных
 require_once 'db.php';
+
+//фильтрация входящих данных от пользователя
 $name = filter_input(INPUT_POST,'name',FILTER_SANITIZE_STRING);
 $text = filter_input(INPUT_POST,'text',FILTER_SANITIZE_STRING);
-$email = $_POST['email'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-$flash = []; //массив для хранения флэш-сообщен
+//массив для хранения флэш-сообщения
+$flash = [];
 
-if (isset($name) && isset($email) && isset($password)) {
-
-    $insert = "INSERT INTO `blog`.`register` (`name`, `email`, `password`) VALUES (?,?,?)";
-    $statement = $pdo->prepare($insert);
-    try {
-        $statement->execute([$name,$email,$password]);//var_dump($res);die;
-    } catch (PDOException $e) {
-        die('Ошибка: ' . $e->getMessage());
-    }
-    
-
-}
-
-//Запрос для вставки данных от гостех
-
+//Запрос для вставки данных от гостей
 if (!empty($name) && !empty($text)) {
 
     //создаем sql-запрос в БД на внесение данных от пользователя
-    $insert_comments = "INSERT INTO `blog`.`comments` (`name`, `comments`) 
+    $insert_comments = "INSERT INTO `blog`.`comments` (`name`, `comments`)
                         VALUES (?,?);";
 
     //Так как в запросе есть переменная, его нужно сперва подготовить
@@ -42,6 +31,7 @@ if (!empty($name) && !empty($text)) {
     $flash['success'] = 'Ваш комментарий успешно добавлен';
 
     $_SESSION['flash'] = $flash;
+
 } else {
     if (!$name) {
         $flash['errors']['name'] = 'Введите ваше имя';
@@ -50,6 +40,7 @@ if (!empty($name) && !empty($text)) {
         $flash['errors']['text'] = 'Введите ваш комментарий';
     }
     $_SESSION['flash'] = $flash;
+    
 }
 
 /*try {
@@ -58,6 +49,7 @@ if (!empty($name) && !empty($text)) {
     die('Ошибка: ' . $e->getMessage());
 }*/
 
+//переадресация на главную страницу после отправки данных
 header('Location: /php/marlin/index.php');
 
 ?>
