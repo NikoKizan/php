@@ -1,4 +1,5 @@
 <?php
+//                     Обработчик комментариев и авторизации
 session_start();
 
 //подключение к базе данных
@@ -32,6 +33,9 @@ if (!empty($name) && !empty($text)) {
 
     $_SESSION['flash'] = $flash;
 
+    //переадресация на главную страницу после отправки данных
+    header('Location: /php/marlin/index.php');
+
 } else {
     if (!$name) {
         $flash['errors']['name'] = 'Введите ваше имя';
@@ -41,6 +45,9 @@ if (!empty($name) && !empty($text)) {
     }
     $_SESSION['flash'] = $flash;
     
+    //переадресация на главную страницу после отправки данных
+    header('Location: /php/marlin/index.php');
+
 }
 
 /*try {
@@ -48,8 +55,5 @@ if (!empty($name) && !empty($text)) {
 } catch (PDOException $e) {
     die('Ошибка: ' . $e->getMessage());
 }*/
-
-//переадресация на главную страницу после отправки данных
-header('Location: /php/marlin/index.php');
 
 ?>

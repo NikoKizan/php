@@ -1,6 +1,16 @@
 <?php
+session_start();
 
 include_once 'db.php';
+
+if (!isset($_SESSION['message'])) {
+    $_SESSION['message'] = [];
+} else {
+    //$success_register = $_SESSION['message']['success'] ? $_SESSION['message']['success'] : null;
+    $error_register = $_SESSION['message']['error'] ? $_SESSION['message']['error'] : null;
+}
+
+unset($_SESSION['message']);
 
 ?>
 
@@ -10,7 +20,7 @@ include_once 'db.php';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Comments</title>
+    <title>Registration</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -65,10 +75,24 @@ include_once 'db.php';
 
                                         <div class="col-md-6">
                                             <input id="login" type="text" class="form-control @error('name') is-invalid @enderror" name="login" autofocus>
-
+                                            <?php if (isset($error_register['login_empty'])): ?>
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>Введите Ваш логин</strong>
+                                                    <strong><?php echo $error_register['login_empty'] ?></strong>
                                                 </span>
+                                            <?php endif ?>
+
+                                            <?php if (isset($error_register['login_length'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_register['login_length'] ?></strong>
+                                                </span>
+                                            <?php endif ?>
+
+                                            <?php if (isset($error_register['login_exist'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_register['login_exist'] ?></strong>
+                                                </span>
+                                            <?php endif ?>
+
                                         </div>
                                     </div>
 
@@ -78,9 +102,24 @@ include_once 'db.php';
                                         <div class="col-md-6">
                                             <input id="email" type="email" class="form-control @error('name') is-invalid @enderror" name="email" >
 
-                                            <span class="invalid-feedback" role="alert">
-                                                    <strong>Введите Вашу ел. почту</strong>
-                                            </span>
+                                            <?php if (isset($error_register['email_empty'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_register['email_empty'] ?></strong>
+                                                </span>
+                                            <?php endif ?>
+
+                                            <?php if (isset($error_register['email_format'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_register['email_format'] ?></strong>
+                                                </span>
+                                            <?php endif ?>
+
+                                            <?php if (isset($error_register['email_exist'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_register['email_exist'] ?></strong>
+                                                </span>
+                                            <?php endif ?>
+
                                         </div>
                                     </div>
 
@@ -90,9 +129,18 @@ include_once 'db.php';
                                         <div class="col-md-6">
                                             <input id="password" type="password" class="form-control @error('name') is-invalid @enderror" name="password"  autocomplete="new-password">
 
-                                            <span class="invalid-feedback" role="alert">
-                                                    <strong>Введите Ваш пароль</strong>
-                                            </span>
+                                            <?php if (isset($error_register['password_empty'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_register['password_empty'] ?></strong>
+                                                </span>
+                                            <?php endif ?>
+
+                                            <?php if (isset($error_register['password_length'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_register['password_length'] ?></strong>
+                                                </span>
+                                            <?php endif ?>
+
                                         </div>
                                     </div>
 
@@ -101,10 +149,13 @@ include_once 'db.php';
 
                                         <div class="col-md-6">
                                             <input id="password-confirm" type="password" class="form-control @error('name') is-invalid @enderror" name="password_confirmation"  autocomplete="new-password">
+                                            
+                                            <?php if (isset($error_register['password_confirm'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_register['password_confirm'] ?></strong>
+                                                </span>
+                                            <?php endif ?>
 
-                                            <span class="invalid-feedback" role="alert">
-                                                    <strong>Подтвердите Ваш пароль</strong>
-                                            </span>
                                         </div>
                                     </div>
 
