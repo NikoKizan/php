@@ -67,7 +67,7 @@ $comments = $statement_comments->fetchAll(PDO::FETCH_ASSOC);
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                             <li class="nav-item">
-                                <a class="nav-link" href="/php/marlin/login.html">Login</a>
+                                <a class="nav-link" href="/php/marlin/login.php">Login</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/php/marlin/register.php">Register</a>

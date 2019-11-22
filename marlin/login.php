@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+include_once 'db.php';
+
+if (!isset($_SESSION['message_login'])) {
+    $_SESSION['message_login'] = [];
+} else {
+    $success_login = $_SESSION['message_login']['success'] ? $_SESSION['message_login']['success'] : null;
+    $error_login = $_SESSION['message_login']['error'] ? $_SESSION['message_login']['error'] : null;
+}
+
+unset($_SESSION['message_login']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +33,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="/marlin/index.php">
+                <a class="navbar-brand" href="/php/marlin/index.php">
                     Project
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,10 +50,10 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                             <li class="nav-item">
-                                <a class="nav-link" href="login.html">Login</a>
+                                <a class="nav-link" href="/php/marlin/login.php">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="register.html">Register</a>
+                                <a class="nav-link" href="/php/marlin/register.php">Register</a>
                             </li>
                     </ul>
                 </div>
@@ -52,16 +68,26 @@
                             <div class="card-header">Login</div>
 
                             <div class="card-body">
-                                <form method="POST" action="">
+                                <form method="POST" action="handler_login.php">
 
                                     <div class="form-group row">
                                         <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
 
                                         <div class="col-md-6">
                                             <input id="email" type="email" class="form-control is-invalid " name="email"  autocomplete="email" autofocus >
+
+                                            <?php if (isset($error_login['email_empty'])): ?>
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>Ошибка валидации</strong>
+                                                    <strong><?php echo $error_login['email_empty']; ?></strong>
                                                 </span>
+                                            <?php endif ?>
+
+                                            <?php if (isset($error_login['email_exist'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_login['email_exist']; ?></strong>
+                                                </span>
+                                            <?php endif ?>
+
                                         </div>
                                     </div>
 
@@ -69,7 +95,20 @@
                                         <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                                         <div class="col-md-6">
-                                            <input id="password" type="password" class="form-control" name="password"  autocomplete="current-password">
+                                            <input id="password" type="password" class="form-control is-invalid" name="password"  autocomplete="current-password">
+
+                                            <?php if (isset($error_login['password_empty'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_login['password_empty']; ?></strong>
+                                                </span>
+                                            <?php endif ?>
+
+                                            <?php if (isset($error_login['invalid_password'])): ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo $error_login['invalid_password']; ?></strong>
+                                                </span>
+                                            <?php endif ?>
+
                                         </div>
                                     </div>
 

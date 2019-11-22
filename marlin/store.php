@@ -45,21 +45,21 @@ if ((!empty($login) && strlen($login) <= 50) && (!empty($email) && preg_match_al
 
     if (empty($login)) $messages['error']['login_empty'] = "Введите Ваш логин";
 
-     elseif (strlen($login) > 50) $messages['error']['login_length'] = "Вы ввели слишком длинный логин (макс. 50 символов)";
+        elseif (strlen($login) > 50) $messages['error']['login_length'] = "Вы ввели слишком длинный логин (макс. 50 символов)";
 
-     elseif (checkLogin($pdo, $login)) $messages['error']['login_exist'] = "Введенный Вами логин уже существует!";
+        elseif (checkLogin($pdo, $login)) $messages['error']['login_exist'] = "Введенный Вами логин уже существует!";
 
-     elseif (empty($email)) $messages['error']['email_empty'] = "Введите адрес Вашей електронной почты";
+        elseif (empty($email)) $messages['error']['email_empty'] = "Введите адрес Вашей електронной почты";
 
-     elseif (!preg_match_all('/^[a-zA-Z0-9\-\_]+@[a-z\.]+[a-z]{2,5}$/',$email)) $messages['error']['email_format'] = "Ваша електронная почта должна соответсвовать формату (abcdef@gmail.com)";
+        elseif (!preg_match_all('/^[a-zA-Z0-9\-\_]+@[a-z\.]+[a-z]{2,5}$/',$email)) $messages['error']['email_format'] = "Ваша електронная почта должна соответсвовать формату (abcdef@gmail.com)";
 
-     elseif (checkEmail($pdo, $email)) $messages['error']['email_exist'] = "Введенная Вами електронная почта уже существует!";
+        elseif (checkEmail($pdo, $email)) $messages['error']['email_exist'] = "Введенная Вами електронная почта уже существует!";
 
-     elseif (empty($password)) $messages['error']['password_empty'] = "Введите Ваш пароль";
+        elseif (empty($password)) $messages['error']['password_empty'] = "Введите Ваш пароль";
 
-     elseif (strlen($password) < 6) $messages['error']['password_length'] = "Ваш пароль должен быть не меньше 6 символов";
+        elseif (strlen($password) < 6) $messages['error']['password_length'] = "Ваш пароль должен быть не меньше 6 символов";
 
-     elseif ($password_confirm !== $password) $messages['error']['password_confirm'] = "Ваши пароли не совпадают";
+        elseif ($password_confirm !== $password) $messages['error']['password_confirm'] = "Ваши пароли не совпадают";
 
     $_SESSION['message'] = $messages;
 

@@ -1,14 +1,20 @@
 <?php
-//                     Обработчик комментариев и авторизации
+//                     Обработчик комментариев
 session_start();
 
 //подключение к базе данных
 require_once 'db.php';
 
-//фильтрация входящих данных от пользователя
+//фильтрация входящих данных от пользователя на главной странице
 $name = filter_input(INPUT_POST,'name',FILTER_SANITIZE_STRING);
 $text = filter_input(INPUT_POST,'text',FILTER_SANITIZE_STRING);
 
+
+
+
+
+//header('location: /php/marlin/login.php');
+//die;
 //массив для хранения флэш-сообщения
 $flash = [];
 
