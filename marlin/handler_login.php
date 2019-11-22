@@ -17,16 +17,12 @@ $result->bindParam(1, $email, PDO::PARAM_STR);
 $result->execute();
 
 $password_hash_db = $result->fetch();
-
-//die;
-//var_dump($password_hash_db);die;
-//проверяем верный ли пароль введенный пользователем
-$password_validate = password_verify($password, $password_hash_db);
+$password_validate = password_verify($password, $password_hash_db['password']);
 
 //создаем массив для хранения флэш-сообщений
 $messages_login = [];
 
-if ((!empty($email) && checkEmail($pdo, $email) == false) && (!empty($password) && $password_validate == $password)) {
+if (!empty($email) && (!empty($password) && $password_validate)) {
 
     $messages_login['success']['enter'] = "Вы успешно авторизовались";
 
@@ -38,12 +34,12 @@ if ((!empty($email) && checkEmail($pdo, $email) == false) && (!empty($password) 
 
     if (empty($email)) $messages_login['errors']['email_empty'] = "Введите адрес Вашей електронной почты";
     
-    elseif (checkEmail($pdo, $email) == false) $messages_login['error']['email_exist'] = "Такой електронной почты не существует!";
+    elseif (checkEmail($pdo, $email == false)) $messages_login['error']['email_exist'] = "Такой електронной почты не существует!";
 
     elseif (empty($password)) $messages_login['errors']['password_empty'] = "Введите Ваш пароль";
 
-    elseif ($password_validate !== $password) $messages_login['errors']['invalid_password'] = "Пароль указан неверно!";
-
+    elseif ($password_validate == false) $messages_login['errors']['invalid_password'] = "Пароль указан неверно!";
+    //var_dump($password_validate);die;
     $_SESSION['message_login'] = $messages_login;
 
     header('location: /php/marlin/login.php');
@@ -71,13 +67,5 @@ function checkEmail($pdo, $email) {
     return false;
 
 }
-
-
-
-
-
-
-
-
 
 ?>
