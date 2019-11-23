@@ -9,7 +9,7 @@ if (!isset($_SESSION['message_login'])) {
     $success_login = $_SESSION['message_login']['success'] ? $_SESSION['message_login']['success'] : null;
     $error_login = $_SESSION['message_login']['error'] ? $_SESSION['message_login']['error'] : null;
 }
-
+//var_dump($_SESSION['message_login']);
 unset($_SESSION['message_login']);
 
 ?>
