@@ -1,10 +1,12 @@
 <?php
+//                          Обработчик Авторизации
 session_start();
 require_once "db.php";
 
 //фильтрация входящих данных от пользователя при авторизации
 $email = trim(htmlspecialchars($_POST['email']));
 $password = trim(htmlspecialchars($_POST['password']));
+$remember = trim(htmlspecialchars($_POST['remember']));
 
 //скрываем пароль
 $query = "SELECT `password` FROM `blog`.`register` WHERE `email` = ?";
@@ -44,6 +46,14 @@ if ((!empty($email) && checkEmail($pdo, $email) == true) && (!empty($password) &
     //unset($_SESSION['message_login']);die;
     header('location: /php/marlin/login.php');
 
+}
+
+if ($remember == 1) {
+    setcookie("cookie_password", $password_hash_db, 2592000);
+    setcookie("cookie_email", $email, 2592000);
+} else {
+    setcookie("cookie_password", $password_hash_db, 2592000);
+    setcookie("cookie_email", $email, 0);
 }
 
 //функция для проверки существует ли введенный email
