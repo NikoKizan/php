@@ -49,11 +49,11 @@ if ((!empty($email) && checkEmail($pdo, $email) == true) && (!empty($password) &
 }
 
 if ($remember == 1) {
-    setcookie("cookie_password", $password_hash_db, 2592000);
-    setcookie("cookie_email", $email, 2592000);
+    setcookie("cookie_password", $password_hash_db, time()+2592000);
+    setcookie("cookie_email", $email, time()+2592000);
 } else {
-    setcookie("cookie_password", $password_hash_db, 2592000);
-    setcookie("cookie_email", $email, 0);
+    setcookie("cookie_password", $password_hash_db, time()-3600);
+    setcookie("cookie_email", $email, time()-3600);
 }
 
 //функция для проверки существует ли введенный email
